@@ -117,8 +117,8 @@ class Api {
     // Filter items to contain only those matching the search
     List<Map<String, dynamic>> items =
         response.response.where((element) {
-          String title = element['title'];
-          bool match = title.contains(keyword);
+          String title = element['title'].toLowerCase();
+          bool match = title.contains(keyword.trim().toLowerCase());
           print('$title returns $match');
           return match;
         }).toList();
@@ -138,7 +138,6 @@ class Api {
           .map((element) => Recipe.fromJson(element))
           .toList();
     }
-    print('Done this');
     return (recipes ?? List<Recipe>());
   }
 }
