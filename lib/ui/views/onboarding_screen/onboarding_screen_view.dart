@@ -144,23 +144,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     )
-                  : GestureDetector(
-                      onTap: () => _navigationService
-                          .replaceWith(Routes.homePageViewRoute),
-                      child: Container(
-                        height: 60,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Get started',
-                            style: TextStyle(
-                              color: Color(0xFFF57D37),
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  : Container(
+                      height: 60,
+                      child: RaisedButton(
+                        onPressed: () {
+                          _navigationService
+                              .replaceWith(Routes.homePageViewRoute);
+                        },
+                        child: Text(
+                          'Get started',
+                          style: TextStyle(
+                            color: Color(0xFFF57D37),
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          color: Colors.white,
                         ),
+                        color: Colors.white,
                       ),
                     ),
             ],
