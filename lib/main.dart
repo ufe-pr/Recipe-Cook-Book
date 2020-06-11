@@ -6,9 +6,11 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app/locator.dart';
 import 'app/router.dart';
 
-void main() {
+void main() async {
+// Injecting all services that needs to start
   setupLocator();
 
+// Setting Status bar
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -22,30 +24,14 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]); // Settting preferred Screen Orientation
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cookify',
       initialRoute: Routes.onboardingViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
-      // theme: CupertinoThemeData(
-      //     primaryColor: ThemeColors.lightOrange1,
-      //     barBackgroundColor: ThemeColors.background,
-      //     scaffoldBackgroundColor: ThemeColors.background,
-      //     textTheme: CupertinoTextThemeData(
-      //       navActionTextStyle: TextStyle(
-      //         color: ThemeColors.lightOrange1,
-      //       ),
-      //       navTitleTextStyle: TextStyle(
-      //         color: ThemeColors.lightOrange1,
-      //       ),
-      //       textStyle: TextStyle(
-      //         fontFamily: 'Lato',
-      //         fontWeight: FontWeight.w500,
-      //       ),
-      //     ),
-      //   ),
     );
   }
 }
