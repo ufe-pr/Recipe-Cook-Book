@@ -1,7 +1,7 @@
 name: recipe_cook_book
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -14,7 +14,7 @@ dependencies:
 
   # Architecture
   stacked: ^1.5.7+1
-  
+
   # Services
   stacked_services: ^0.3.4
   get_it: ^4.0.2
