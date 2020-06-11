@@ -35,13 +35,13 @@ class AppBarCustomIcon extends StatelessWidget {
             style: isOutLine ? BorderStyle.solid : BorderStyle.none),
         borderRadius: BorderRadius.all(Radius.circular(13)),
         color:
-            isOutLine ? Colors.transparent : Colors.white,
+            Colors.white,
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Color(0xfff8f8f8),
+              color: Color(0xffe8e8e8),
               blurRadius: 5,
-              spreadRadius: 10,
-              offset: Offset(5, 5)),
+              spreadRadius: 2,
+              offset: Offset(5, 0)),
         ],
       ),
       child: Icon(icon, color: color, size: size),

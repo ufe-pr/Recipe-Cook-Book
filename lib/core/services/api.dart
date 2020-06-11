@@ -22,14 +22,15 @@ class RecipeResponse {
     _data = await _loadJson();
   }
 
-  static const _endpoint = 'assets/api/json_response';
+  static const _endpoint = 'assets/api/json_response.json';
   // Function for loading json from assets
   Future<List<Map<String, dynamic>>> _loadJson() async {
     // Load the string data from assets
     String data = await rootBundle.loadString(_endpoint);
 
     // return decoded json
-    return jsonDecode(data);
+    var js = (json.decode(data) as List)?.map((e) => e as Map<String, dynamic>)?.toList();
+    return js;
   }
 
   RecipeResponse._();
@@ -64,7 +65,6 @@ class Api {
     RecipeResponse response = await RecipeResponse.getInstance();
 
     List items = response.response;
-    print(items);
     List<Recipe> recipes;
 
     //
@@ -101,13 +101,14 @@ class Api {
       {page: 1, int numPerPage: 10}) async {
     // Add logic here
 
+
     // Get the json response
     RecipeResponse response = await RecipeResponse.getInstance();
 
     List<Recipe> recipes;
 
     // Build regex to use for searching
-    RegExp regex = RegExp(keyword);
+//    RegExp regex = RegExp(keyword);
 
     //
     // Return the recipe if it exists else return an empty list
@@ -115,7 +116,12 @@ class Api {
 
     // Filter items to contain only those matching the search
     List<Map<String, dynamic>> items =
-        response.response.where((element) => regex.hasMatch(element['title']));
+        response.response.where((element) {
+          String title = element['title'];
+          bool match = title.contains(keyword);
+          print('$title returns $match');
+          return match;
+        }).toList();
     if (items != null) {
 
       // get start of sublist. return null if there's no result in that position
@@ -132,6 +138,7 @@ class Api {
           .map((element) => Recipe.fromJson(element))
           .toList();
     }
-    return recipes ?? List<Recipe>();
+    print('Done this');
+    return (recipes ?? List<Recipe>());
   }
 }

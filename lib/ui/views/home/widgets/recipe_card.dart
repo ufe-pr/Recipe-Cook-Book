@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/app/locator.dart';
 import 'package:recipe_cook_book/app/router.dart';
+import 'package:recipe_cook_book/constants/themes/theme.dart';
 
 import 'package:recipe_cook_book/ui/views/home/widgets/extentions.dart';
 import 'package:recipe_cook_book/constants/themes/light_color.dart';
@@ -20,34 +21,49 @@ class RecipeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: LightColor.background,
         borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(color: Color(0xfff8f8f8), blurRadius: 15, spreadRadius: 10),
-        ],
+//        boxShadow: <BoxShadow>[
+//          BoxShadow(color: Color(0xffeeeeee), blurRadius: 15, spreadRadius: 10),
+//        ],
       ),
-      margin: EdgeInsets.symmetric(vertical: 20 ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
-            Padding(
-              padding:  EdgeInsets.all(8.0),
-              child: Container(
-                padding: EdgeInsets.all(60.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.0),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: recipe.imageAssetPath != null ? AssetImage(recipe.imageAssetPath) : NetworkImage(recipe.imageUrl),
-                  ),
+            Container(
+              height: 130,
+              width: 130,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100.0),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: recipe.imageAssetPath != null ? AssetImage(recipe.imageAssetPath) : NetworkImage(recipe.imageUrl),
                 ),
               ),
             ),
 
-            TitleText(
-              text: recipe.recipeTitle,
-              fontSize: 16,
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: TitleText(
+                  text: recipe.recipeTitle,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.timer, size: 16,),
+                  SizedBox(width: 3),
+                  Expanded(
+                    child: Text('Ready in ${recipe.readyInMinutes} minutes'),
+                  ),
+                ],
+              ),
             ),
 
           ],

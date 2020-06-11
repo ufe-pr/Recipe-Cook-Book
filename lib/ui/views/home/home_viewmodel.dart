@@ -7,17 +7,30 @@ import '../../../core/models/recipe.dart';
 import '../../../core/services/api.dart';
 import '../../../core/services/saved_recipes.dart';
 
-class HomeViewModel extends FutureViewModel{
+class HomeViewModel extends BaseViewModel {
   NavigationService _navigationService = locator<NavigationService>();
+  List<Recipe> _recipes;
 
-  String get title => _selectedIndex == 0 ? 'Find the best recipe for you' : 'Here are your favourite recipes';
+  List<Recipe> get recipes => _recipes;
+
+  HomeViewModel() {
+    setBusy(true);
+    upDateRecipes();
+  }
+
+  String get title => _selectedIndex == 0
+      ? 'Find the best recipe for you'
+      : 'Here are your favourite recipes';
 
   int _selectedIndex = 0;
   int get selectedIndex => _selectedIndex;
 
-  @override
-  Future<List<Recipe>> futureToRun() async {
-    return await (_selectedIndex == 0 ? locator<Api>().getAllRecipes() : locator<SavedRecipesService>().getAllRecipes());
+  Future upDateRecipes() async {
+    _recipes = await (_selectedIndex == 0
+        ? locator<Api>().getAllRecipes(numPerPage: 100)
+        : locator<SavedRecipesService>().getAllRecipes(numPerPage: 100));
+    setBusy(false);
+    notifyListeners();
   }
 
   void search(String keyword) {
@@ -25,7 +38,9 @@ class HomeViewModel extends FutureViewModel{
   }
 
   void bottomNavbarPressed(int selectedIndex) {
-    _selectedIndex = selectedIndex;
+    setBusy(true);
     notifyListeners();
+    _selectedIndex = selectedIndex;
+    upDateRecipes();
   }
 }

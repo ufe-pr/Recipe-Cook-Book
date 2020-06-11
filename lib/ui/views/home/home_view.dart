@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/ui/views/home/widgets/searchbar.dart';
 import 'package:stacked/stacked.dart';
@@ -12,22 +13,35 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      builder: (context, model, child) => Scaffold(
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                model.title,
-                style: AppTheme.h2Style.copyWith(
-                  color: ThemeColors.lightOrange1,
+      builder: (context, model, child) => Theme(
+        data: Theme.of(context).copyWith(
+          bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Color(0xffeeeeee),
+          body: SafeArea(
+            child: ListView(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20,),
+              children: <Widget>[
+                Text(
+                  model.title,
+                  style: AppTheme.h1Style.copyWith(
+                    color: ThemeColors.lightOrange1,
+                    fontSize: 32,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
                 ),
-              ),
-              model.selectedIndex == 1 ? Container() : SearchBar(
-                func: model.search
-              ),
-              Expanded(
-                child: model.isBusy
+
+                SizedBox(height: 10),
+                model.selectedIndex == 1 ? Container() : SearchBar(
+                  func: model.search
+                ),
+
+                SizedBox(height: 30),
+                model.isBusy
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
@@ -36,27 +50,31 @@ class HomeView extends StatelessWidget {
                           crossAxisCount: 2,
                           crossAxisSpacing: 20,
                           mainAxisSpacing: 30,
-                          childAspectRatio: 3 / 4,
+                          childAspectRatio: 1/1.9,
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           return RecipeCard(
-                            recipe: model.data[index],
+                            recipe: model.recipes[index],
                           );
                         },
-                        itemCount: model.data != null ? model.data.length : 0,
+                        itemCount: model.recipes != null ? model.recipes.length : 0,
+                        shrinkWrap: true,
+                        primary: false,
                       ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        bottomSheet: CustomBottomNavigationBar(
-          icon1: Icons.home,
-          icon2: Icons.favorite,
-          onIconPresedCallback: model.bottomNavbarPressed,
-          selectedIndex: model.selectedIndex,
+          bottomSheet: CustomBottomNavigationBar(
+            icon1: Icons.home,
+            icon2: Icons.favorite,
+            onIconPresedCallback: model.bottomNavbarPressed,
+            selectedIndex: model.selectedIndex,
+          ),
+
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
     );
   }
 }
+

@@ -19,10 +19,10 @@ class SearchViewModel extends FutureViewModel{
 
   @override
   Future<List<Recipe>> futureToRun() async {
-    return await locator<Api>().searchRecipe(searchKeyword);
+    return (await locator<Api>().searchRecipe(searchKeyword, numPerPage: 20));
   }
 
-  void popView(String keyword) {
+  void popView() {
     _navigationService.back();
   }
 

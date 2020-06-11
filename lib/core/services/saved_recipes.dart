@@ -19,17 +19,21 @@ class SavedRecipesService{
   }
 
   // Add recipe
-  void addRecipe(int recipeId) async {
+  Future<void> addRecipe(int recipeId) async {
     // Add logic here
     _list.add(recipeId.toString());
     await _save();
   }
 
   // Remove the recipe matching the "recipeId" provided
-  removeRecipe(int recipeId) async {
+  Future<void> removeRecipe(int recipeId) async {
     // Add logic here
     _list.removeWhere((element) => element == recipeId.toString());
     await _save();
+  }
+
+  bool isSaved(int recipeId) {
+    return _list.contains(recipeId.toString());
   }
 
   // Gets all recipes

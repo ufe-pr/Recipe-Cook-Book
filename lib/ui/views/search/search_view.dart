@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/ui/views/widgets/custom_appbar_icon.dart';
 import 'package:stacked/stacked.dart';
@@ -9,12 +10,10 @@ import 'package:recipe_cook_book/ui/views/home/widgets/recipe_card.dart';
 class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<SearchViewModel>.nonReactive(
+    return ViewModelBuilder<SearchViewModel>.reactive(
         builder: (context, model, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(model.title),
-          backgroundColor: ThemeColors.background,
+      return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
           leading: AppBarCustomIcon(
             icon: Icons.arrow_back_ios,
             color: Colors.black54,
@@ -23,32 +22,41 @@ class SearchView extends StatelessWidget {
             isOutLine: true,
             onPressed: model.popView,
           ),
+          backgroundColor: ThemeColors.background,
+          middle: Text(model.title),
         ),
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(
-                child: model.isBusy
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 30,
-                          childAspectRatio: 3 / 4,
+        child: Scaffold(
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: model.isBusy
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 30,
+                            childAspectRatio: 3 / 5,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            return RecipeCard(
+                              recipe: model.data[index],
+                            );
+                          },
+                          itemCount: model.data != null ? model.data.length : 0,
                         ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return RecipeCard(
-                            recipe: model.data[index],
-                          );
-                        },
-                        itemCount: model.data.length,
-                      ),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       );

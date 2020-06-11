@@ -25,7 +25,7 @@ class Recipe {
   factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
   Map<String, dynamic> toJson() => _$RecipeToJson(this);
 
-  String get imageAssetPath => 'assets/api/images/${this.recipeId}';
+  String get imageAssetPath => 'assets/api/images/${this.recipeId}.jpg';
 }
 
 @JsonSerializable(explicitToJson: true)
