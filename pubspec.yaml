@@ -13,9 +13,6 @@ dependencies:
     sdk: flutter
   shared_preferences: ^0.5.7+3
 
-  # For overriding compare in classes
-  equatable: ^1.2.0
-
   # Architecture
   stacked: ^1.5.7+1
 
