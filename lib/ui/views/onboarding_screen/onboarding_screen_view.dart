@@ -91,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.only(bottom: 48.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -144,31 +144,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     )
-                  : Text(''),
+                  : GestureDetector(
+                      onTap: () => _navigationService
+                          .replaceWith(Routes.homePageViewRoute),
+                      child: Container(
+                        height: 60,
+                        child: RaisedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Get started',
+                            style: TextStyle(
+                              color: Color(0xFFF57D37),
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
       ),
-      bottomSheet: _currentPage == _numPages - 1
-          ? GestureDetector(
-              onTap: () =>
-                  _navigationService.replaceWith(Routes.homePageViewRoute),
-              child: Container(
-                height: 80,
-                color: Colors.white,
-                child: Center(
-                  child: Text(
-                    'Get started',
-                    style: TextStyle(
-                      color: Color(0xFFF57D37),
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            )
-          : Text(''),
     );
   }
 }
