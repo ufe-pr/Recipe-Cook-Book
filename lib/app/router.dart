@@ -5,7 +5,6 @@ import 'package:recipe_cook_book/ui/views/home/pages/mainPage.dart';
 
 import 'package:recipe_cook_book/ui/views/home/pages/recipe_detail.dart';
 import 'package:recipe_cook_book/ui/views/onboarding_screen/onboarding_screen_view.dart';
-import 'package:recipe_cook_book/ui/views/startup/startup_view.dart';
 
 abstract class Routes {
   static const startupViewRoute = '/'; //
@@ -18,11 +17,11 @@ abstract class Routes {
 class Router {
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-    //   case Routes.startupViewRoute:
-    //     return CupertinoPageRoute<dynamic>(
-    //       builder: (context) => StartupView(),
-    //       settings: settings,
-    //     );
+      //   case Routes.startupViewRoute:
+      //     return CupertinoPageRoute<dynamic>(
+      //       builder: (context) => StartupView(),
+      //       settings: settings,
+      //     );
       case Routes.onboardingViewRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => OnboardingScreen(),
