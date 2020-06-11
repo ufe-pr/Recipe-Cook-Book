@@ -147,10 +147,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   : Container(
                       height: 60,
                       child: RaisedButton(
+                        elevation: 4,
                         onPressed: () {
                           _navigationService
                               .replaceWith(Routes.homePageViewRoute);
                         },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                         child: Text(
                           'Get started',
                           style: TextStyle(
