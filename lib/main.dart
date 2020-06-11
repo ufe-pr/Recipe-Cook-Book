@@ -9,6 +9,10 @@ import 'app/router.dart';
 void main() {
   setupLocator();
 
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -23,7 +27,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: 'Cookify',
       initialRoute: Routes.onboardingViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
