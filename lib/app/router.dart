@@ -2,37 +2,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/ui/views/home/home_view.dart';
 import 'package:recipe_cook_book/ui/views/home/pages/mainPage.dart';
+import 'package:recipe_cook_book/ui/views/onboarding/onboarding_view.dart';
 
 import 'package:recipe_cook_book/ui/views/recipe_detail.dart';
 import 'package:recipe_cook_book/ui/views/onboarding_screen/onboarding_screen_view.dart';
+import 'package:recipe_cook_book/ui/views/search/search_view.dart';
 import 'package:recipe_cook_book/ui/views/startup/startup_view.dart';
 
 abstract class Routes {
-  static const startupViewRoute = '/'; //
+  static const startupViewRoute = '/start'; //
   static const onboardingViewRoute = '/';
-  // static const homePageViewRoute = '/homepage';
+  static const searchViewRoute = '/search';
   static const recipeDetailsViewRoute = '/productdetails';
   static const homeViewRoute = '/home';
+  static const onboardViewRoute = '/';
 }
 
 class Router {
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-    //   case Routes.startupViewRoute:
-    //     return CupertinoPageRoute<dynamic>(
-    //       builder: (context) => StartupView(),
-    //       settings: settings,
-    //     );
+      case Routes.onboardViewRoute:
+        return CupertinoPageRoute<dynamic>(
+          builder: (context) => OnBoardingView(),
+          settings: settings,
+        );
+      case Routes.startupViewRoute:
+        return CupertinoPageRoute<dynamic>(
+          builder: (context) => StartupView(),
+          settings: settings,
+        );
       case Routes.onboardingViewRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => OnboardingScreen(),
           settings: settings,
         );
-      // case Routes.homePageViewRoute:
-      //   return CupertinoPageRoute<dynamic>(
-      //     builder: (context) => MainPage(),
-      //     settings: settings,
-      //   );
+      case Routes.searchViewRoute:
+        return CupertinoPageRoute<dynamic>(
+          builder: (context) => SearchView(),
+          settings: settings,
+        );
       case Routes.recipeDetailsViewRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => RecipeDetailView(),

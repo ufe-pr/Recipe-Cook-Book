@@ -64,6 +64,7 @@ class Api {
     RecipeResponse response = await RecipeResponse.getInstance();
 
     List items = response.response;
+    print(items);
     List<Recipe> recipes;
 
     //
@@ -75,6 +76,7 @@ class Api {
       // get start of sublist. return null if there's no result in that position
       int start = (page - 1) * numPerPage;
       if (start > items.length) {
+        print('Start is greater than items length\n\n\n\n\n');
         return null;
       }
 

@@ -21,7 +21,7 @@ class HomeViewModel extends FutureViewModel{
   }
 
   void search(String keyword) {
-    _navigationService.navigateTo(Routes.startupViewRoute);
+    _navigationService.navigateTo(Routes.searchViewRoute, arguments: keyword);
   }
 
   void bottomNavbarPressed(int selectedIndex) {

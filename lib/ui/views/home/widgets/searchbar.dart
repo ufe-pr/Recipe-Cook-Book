@@ -9,28 +9,32 @@ class SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 40,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: LightColor.lightGrey.withAlpha(100),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: LightColor.lightGrey.withAlpha(100),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: "Search for your Recipe",
+                hintStyle: TextStyle(fontSize: 12),
+                contentPadding:
+                    EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
+                prefixIcon: Icon(Icons.search, color: Colors.black54),
+              ),
+              onSubmitted: func,
+            ),
           ),
         ),
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: "Search for your Recipe",
-            hintStyle: TextStyle(fontSize: 12),
-            contentPadding:
-                EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
-            prefixIcon: Icon(Icons.search, color: Colors.black54),
-          ),
-          onSubmitted: func,
-        ),
-      ),
+      ],
     );
   }
 }

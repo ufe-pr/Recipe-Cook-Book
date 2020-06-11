@@ -43,7 +43,7 @@ class HomeView extends StatelessWidget {
                             recipe: model.data[index],
                           );
                         },
-                        itemCount: model.data.length,
+                        itemCount: model.data != null ? model.data.length : 0,
                       ),
               ),
             ],

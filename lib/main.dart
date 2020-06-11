@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: true,
       title: 'Cookify',
-      initialRoute: Routes.onboardingViewRoute,
+      initialRoute: Routes.startupViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
     // theme: CupertinoThemeData(
