@@ -17,7 +17,7 @@ int currentPage = 0;
 
   Future setup() async {
     await Future.delayed(Duration(milliseconds: 200));
-    await _navigationService.replaceWith(Routes.homePageViewRoute);
+    await _navigationService.replaceWith(Routes.homeViewRoute);
   }
 
   

@@ -21,51 +21,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   bool isHomePageSelected = true;
-  
-  // Widget _appBar() {
-  //   return Container(
-  //     padding: AppTheme.padding,
-  //     child: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: <Widget>[
-  //         RotatedBox(
-  //           quarterTurns: 4,
-  //           child: _icon(Icons.sort, color: Colors.black54),
-  //         ),
-         
-  //         ClipRRect(
-  //           borderRadius: BorderRadius.all(Radius.circular(13)),
-  //           child: Container(
-  //             decoration: BoxDecoration(
-  //               color: Theme.of(context).backgroundColor,
-  //               boxShadow: <BoxShadow>[
-  //                 BoxShadow(
-  //                     color: Color(0xfff8f8f8),
-  //                     blurRadius: 10,
-  //                     spreadRadius: 10),
-  //               ],
-  //             ),
-  //             child: Image.asset("assets/user.png"),
-  //           ),
-  //         ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
-  //       ],
-  //     ),
-  //   );
-  // }
 
-  // Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
-  //   return Container(
-  //     padding: EdgeInsets.all(10),
-  //     decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.all(Radius.circular(13)),
-  //         color: Theme.of(context).backgroundColor,
-  //         boxShadow: AppTheme.shadow),
-  //     child: Icon(
-  //       icon,
-  //       color: color,
-  //     ),
-  //   ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
-  // }
+
 
   Widget _title() {
     return Container(

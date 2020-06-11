@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^0.5.7+3
 
   # Architecture
   stacked: ^1.5.7+1
@@ -26,6 +27,9 @@ dependencies:
   # add flutter_screenutil
   flutter_screenutil: ^1.1.0
 
+  # JSON
+  json_annotation: ^3.0.1
+
   cupertino_icons: ^0.1.3
 
 dev_dependencies:
@@ -35,6 +39,7 @@ dev_dependencies:
   auto_route_generator:
   injectable_generator:
   flutter_native_splash:
+  json_serializable: ^3.3.0
 
 flutter:
   uses-material-design: true

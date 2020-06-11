@@ -4,6 +4,7 @@ import 'package:recipe_cook_book/constants/themes/theme.dart';
 import 'package:recipe_cook_book/datamodels/data.dart';
 import 'package:recipe_cook_book/ui/views/home/widgets/title_text.dart';
 import 'package:recipe_cook_book/ui/views/home/widgets/extentions.dart';
+import 'package:recipe_cook_book/ui/views/widgets/custom_appbar_icon.dart';
 
 class RecipeDetailView extends StatefulWidget {
   RecipeDetailView({Key key}) : super(key: key);
@@ -39,21 +40,10 @@ class _ProductDetailPageState extends State<RecipeDetailView>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          _icon(
-            Icons.arrow_back_ios,
-            color: Colors.black54,
-            size: 15,
-            padding: 12,
-            isOutLine: true,
-            onPressed: () {
+          AppBarCustomIcon(icon: Icons.arrow_back_ios, color: Colors.black54, size: 15, padding: 12, isOutLine: true, onPressed: () {
               Navigator.of(context).pop();
-            },
-          ),
-          _icon(isLiked ? Icons.favorite : Icons.favorite_border,
-              color: isLiked ? LightColor.red : LightColor.lightGrey,
-              size: 15,
-              padding: 12,
-              isOutLine: false, onPressed: () {
+            }),
+          AppBarCustomIcon(icon: isLiked ? Icons.favorite : Icons.favorite_border, color: isLiked ? LightColor.red : LightColor.lightGrey, size: 15, padding: 12, isOutLine: false, onPressed: () {
             setState(() {
               isLiked = !isLiked;
             });
@@ -61,42 +51,6 @@ class _ProductDetailPageState extends State<RecipeDetailView>
         ],
       ),
     );
-  }
-
-  Widget _icon(
-    IconData icon, {
-    Color color = LightColor.iconColor,
-    double size = 20,
-    double padding = 10,
-    bool isOutLine = false,
-    Function onPressed,
-  }) {
-    return Container(
-      height: 40,
-      width: 40,
-      padding: EdgeInsets.all(padding),
-      // margin: EdgeInsets.all(padding),
-      decoration: BoxDecoration(
-        border: Border.all(
-            color: LightColor.iconColor,
-            style: isOutLine ? BorderStyle.solid : BorderStyle.none),
-        borderRadius: BorderRadius.all(Radius.circular(13)),
-        color:
-            isOutLine ? Colors.transparent : Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Color(0xfff8f8f8),
-              blurRadius: 5,
-              spreadRadius: 10,
-              offset: Offset(5, 5)),
-        ],
-      ),
-      child: Icon(icon, color: color, size: size),
-    ).ripple(() {
-      if (onPressed != null) {
-        onPressed();
-      }
-    }, borderRadius: BorderRadius.all(Radius.circular(13)));
   }
 
   Widget _productImage() {
@@ -382,3 +336,4 @@ class _ProductDetailPageState extends State<RecipeDetailView>
     );
   }
 }
+

@@ -161,7 +161,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       bottomSheet: _currentPage == _numPages - 1
           ? GestureDetector(
-              onTap: () => _navigationService.replaceWith(Routes.homePageViewRoute),
+              onTap: () => _navigationService.replaceWith(Routes.homeViewRoute),
               child: Container(
                 height: 100.0,
                 width: double.infinity,

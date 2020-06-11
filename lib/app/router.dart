@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/ui/views/home/home_view.dart';
 import 'package:recipe_cook_book/ui/views/home/pages/mainPage.dart';
 
-import 'package:recipe_cook_book/ui/views/home/pages/recipe_detail.dart';
+import 'package:recipe_cook_book/ui/views/recipe_detail.dart';
 import 'package:recipe_cook_book/ui/views/onboarding_screen/onboarding_screen_view.dart';
 import 'package:recipe_cook_book/ui/views/startup/startup_view.dart';
 
 abstract class Routes {
   static const startupViewRoute = '/'; //
   static const onboardingViewRoute = '/';
-  static const homePageViewRoute = '/homepage';
+  // static const homePageViewRoute = '/homepage';
   static const recipeDetailsViewRoute = '/productdetails';
   static const homeViewRoute = '/home';
 }
@@ -28,11 +28,11 @@ class Router {
           builder: (context) => OnboardingScreen(),
           settings: settings,
         );
-      case Routes.homePageViewRoute:
-        return CupertinoPageRoute<dynamic>(
-          builder: (context) => MainPage(),
-          settings: settings,
-        );
+      // case Routes.homePageViewRoute:
+      //   return CupertinoPageRoute<dynamic>(
+      //     builder: (context) => MainPage(),
+      //     settings: settings,
+      //   );
       case Routes.recipeDetailsViewRoute:
         return CupertinoPageRoute<dynamic>(
           builder: (context) => RecipeDetailView(),

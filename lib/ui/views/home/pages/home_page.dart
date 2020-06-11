@@ -68,27 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
       height: AppTheme.fullWidth(context) * .7,
       child: GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
+            crossAxisCount: 2,
             childAspectRatio: 4 / 3,
             mainAxisSpacing: 30,
-            crossAxisSpacing: 20),
+            crossAxisSpacing: 15),
         padding: EdgeInsets.only(left: 20),
-        scrollDirection: Axis.horizontal,
-        children: AppData.productList
-            .map(
-              (recipe) => RecipeCard(
-                recipe : recipe,
-                onSelected: (model) {
-                  setState(() {
-                    AppData.productList.forEach((item) {
-                      item.isSelected = false;
-                    });
-                    model.isSelected = true;
-                  });
-                },
-              ),
-            )
-            .toList(),
       ),
     );
   }

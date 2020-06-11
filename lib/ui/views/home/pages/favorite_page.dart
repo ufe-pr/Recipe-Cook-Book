@@ -88,48 +88,6 @@ class FavoritePage extends StatelessWidget {
     );
   }
 
-  // Widget _price() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: <Widget>[
-  //       TitleText(
-  //         text: '${AppData.cartList.length} Items',
-  //         color: LightColor.grey,
-  //         fontSize: 14,
-  //         fontWeight: FontWeight.w500,
-  //       ),
-  //       TitleText(
-  //         text: '\$${getPrice()}',
-  //         fontSize: 18,
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget _submitButton(BuildContext context) {
-  //   return FlatButton(
-  //       onPressed: () {},
-  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-  //       color: LightColor.orange,
-  //       child: Container(
-  //         alignment: Alignment.center,
-  //         padding: EdgeInsets.symmetric(vertical: 12),
-  //         width: AppTheme.fullWidth(context) * .7,
-  //         child: TitleText(
-  //           text: 'Next',
-  //           color: LightColor.background,
-  //           fontWeight: FontWeight.w500,
-  //         ),
-  //       ));
-  // }
-
-  // double getPrice() {
-  //   double price = 0;
-  //   AppData.cartList.forEach((x) {
-  //     price += x.time * x.id;
-  //   });
-  //   return price;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -139,13 +97,6 @@ class FavoritePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             _favoriteItems(),
-            // Divider(
-            //   thickness: 1,
-            //   height: 70,
-            // ),
-            // _price(),
-            // SizedBox(height: 30),
-            // _submitButton(context),
           ],
         ),
       ),
