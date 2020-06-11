@@ -20,23 +20,23 @@ class App extends StatelessWidget {
       initialRoute: Routes.onboardingViewRoute,
       onGenerateRoute: Router().onGenerateRoute,
       navigatorKey: locator<NavigationService>().navigatorKey,
-    // theme: CupertinoThemeData(
-    //     primaryColor: ThemeColors.lightOrange1,
-    //     barBackgroundColor: ThemeColors.background,
-    //     scaffoldBackgroundColor: ThemeColors.background,
-    //     textTheme: CupertinoTextThemeData(
-    //       navActionTextStyle: TextStyle(
-    //         color: ThemeColors.lightOrange1,
-    //       ),
-    //       navTitleTextStyle: TextStyle(
-    //         color: ThemeColors.lightOrange1,
-    //       ),
-    //       textStyle: TextStyle(
-    //         fontFamily: 'Lato',
-    //         fontWeight: FontWeight.w500,
-    //       ),
-    //     ),
-    //   ),
+      // theme: CupertinoThemeData(
+      //     primaryColor: ThemeColors.lightOrange1,
+      //     barBackgroundColor: ThemeColors.background,
+      //     scaffoldBackgroundColor: ThemeColors.background,
+      //     textTheme: CupertinoTextThemeData(
+      //       navActionTextStyle: TextStyle(
+      //         color: ThemeColors.lightOrange1,
+      //       ),
+      //       navTitleTextStyle: TextStyle(
+      //         color: ThemeColors.lightOrange1,
+      //       ),
+      //       textStyle: TextStyle(
+      //         fontFamily: 'Lato',
+      //         fontWeight: FontWeight.w500,
+      //       ),
+      //     ),
+      //   ),
     );
   }
 }
