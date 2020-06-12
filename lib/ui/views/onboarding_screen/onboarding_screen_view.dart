@@ -150,7 +150,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: RaisedButton(
                   elevation: 4,
                   onPressed: () async {
-                    await locator<StorageUtil>().getBool('HAS_BEEN_INTRODUCED');
+                    await locator<StorageUtil>().putBool('HAS_BEEN_INTRODUCED', true);
                     _navigationService
                         .clearStackAndShow(Routes.homeViewRoute);
                   },
@@ -160,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Text(
                     'Get started',
                     style: TextStyle(
-                      color: ThemeColors.lightOrange4,
+                      color: ThemeColors.lightOrange1,
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
