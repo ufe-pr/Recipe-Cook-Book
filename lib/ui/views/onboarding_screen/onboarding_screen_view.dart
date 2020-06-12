@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:recipe_cook_book/app/locator.dart';
 import 'package:recipe_cook_book/app/router.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:recipe_cook_book/core/services/storage_util_service.dart';
+
+import '../../../constants/colors.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -39,8 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
+      body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -52,136 +53,125 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Color(0xFFFFFFFF),
                 Color(0xFFFABE9B),
                 Color(0xFFFABE9B),
-                // Color(0xFFF79D69),
-                // Color(0xFFF57D37),
               ],
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  height: 600.0,
-                  child: PageView(
-                    physics: ClampingScrollPhysics(),
-                    controller: _pageController,
-                    onPageChanged: (int page) {
-                      setState(() {
-                        _currentPage = page;
-                      });
-                    },
-                    children: <Widget>[
-                      PageScreens(
-                        image: 'assets/images/onboarding1.png',
-                        text1: 'Search for your\nFavorite Recipes',
-                        text2:
-                            'Find over 1000 recipes to use to prepare your Favorite meal',
-                      ),
-                      PageScreens(
-                        image: 'assets/images/onboarding2.png',
-                        text1: 'Use recipes to\nprepare meals',
-                        text2:
-                            'Find over 1000 recipes to use to prepare your meal',
-                      ),
-                      PageScreens(
-                        image: 'assets/images/onboarding3.png',
-                        text1: 'Save your Favorite\nRecipes',
-                        text2:
-                            'Saving your favorite recipe for another cook is just a click',
-                      ),
-                    ],
-                  ),
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: PageView(
+                  physics: ClampingScrollPhysics(),
+                  controller: _pageController,
+                  onPageChanged: (int page) {
+                    setState(() {
+                      _currentPage = page;
+                    });
+                  },
+                  children: <Widget>[
+                    PageScreens(
+                      image: 'assets/images/onboarding1.png',
+                      text1: 'Search for your\nfavorite Recipes',
+                      text2:
+                      'With our app, you can find over 1000 \nrecipes to use to prepare your meal',
+                    ),
+                    PageScreens(
+                      image: 'assets/images/onboarding2.png',
+                      text1: 'Use recipes to\nprepare meals',
+                      text2:
+                      'Find over 1000 recipes to use to \nprepare your meal',
+                    ),
+                    PageScreens(
+                      image: 'assets/images/onboarding3.png',
+                      text1: 'Save your favorite\nrecipes',
+                      text2:
+                      'Saving your favorite recipe for another \ncook is just a click',
+                    ),
+                  ],
                 ),
-                Row(
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 48.0),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
                 ),
-                SizedBox(height: 130.0),
-                _currentPage != _numPages - 1
-                    ? Row(
-                        //  crossAxisAlignment: CrossAxisAlignment.baseline,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Container(
-                            child: FlatButton(
-                              onPressed: () {
-                                _pageController.jumpToPage(_numPages);
-                              },
-                              child: Text(
-                                'Skip',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: FractionalOffset.bottomRight,
-                              child: FlatButton(
-                                onPressed: () {
-                                  _pageController.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'Next',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 22.0,
-                                      ),
-                                    ),
-                                    SizedBox(width: 10.0),
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                      size: 30.0,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Text(''),
-              ],
-            ),
-          ),
-        ),
-      ),
-      bottomSheet: _currentPage == _numPages - 1
-          ? GestureDetector(
-              onTap: () => _navigationService.replaceWith(Routes.homePageViewRoute),
-              child: Container(
-                height: 100.0,
-                width: double.infinity,
-                color: Colors.white,
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 30.0),
-                    child: Text(
-                      'Get started',
-                      style: TextStyle(
-                        color: Color(0xFFF57D37),
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
+              ),
+              _currentPage != _numPages - 1
+                  ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    child: FlatButton(
+                      onPressed: () {
+                        _pageController.jumpToPage(_numPages);
+                      },
+                      child: Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
                       ),
                     ),
                   ),
+                  FlatButton(
+                    onPressed: () {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          'Next',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        SizedBox(width: 5.0),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+                  : Container(
+                height: 60,
+                child: RaisedButton(
+                  elevation: 4,
+                  onPressed: () async {
+                    await locator<StorageUtil>().putBool('HAS_BEEN_INTRODUCED', true);
+                    _navigationService
+                        .clearStackAndShow(Routes.homeViewRoute);
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    'Get started',
+                    style: TextStyle(
+                      color: ThemeColors.lightOrange1,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  color: Colors.white,
                 ),
               ),
-            )
-          : Text(''),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -191,37 +181,46 @@ class PageScreens extends StatelessWidget {
   final String text1;
   final String text2;
 
-  const PageScreens({Key key, this.image, this.text1, this.text2})
-      : super(key: key);
+  const PageScreens({
+    this.image,
+    this.text1,
+    this.text2,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(40.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Center(
-            child: Image(
-              image: AssetImage(
-                image,
-              ),
-              height: 300.0,
-              width: 300.0,
+          Image(
+            image: AssetImage(
+              image,
             ),
+            fit: BoxFit.contain,
+            height: MediaQuery.of(context).size.height * 0.3,
+            width: MediaQuery.of(context).size.height * 0.3,
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 24.0),
           Text(
             text1,
             style: TextStyle(
-              fontSize: 50.0,
+              fontSize: 36.0,
+              letterSpacing: 1.0,
+              color: ThemeColors.lightOrange1,
+              fontWeight: FontWeight.bold,
             ),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 15.0),
+          SizedBox(height: 16.0),
           Text(
             text2,
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 22.0,
+              fontSize: 16,
+              color: Colors.grey.shade700,
             ),
           ),
         ],

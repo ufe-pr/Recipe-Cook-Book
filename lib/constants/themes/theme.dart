@@ -9,12 +9,12 @@ class AppTheme {
     backgroundColor: LightColor.background,
     primaryColor: LightColor.background,
     cardTheme: CardTheme(color: LightColor.background),
-    textTheme: TextTheme(display1: TextStyle(color: LightColor.black)),
+    textTheme: TextTheme(headline4: TextStyle(color: LightColor.black)),
     iconTheme: IconThemeData(color: LightColor.iconColor),
     bottomAppBarColor: LightColor.background,
     dividerColor: LightColor.lightGrey,
     primaryTextTheme: TextTheme(
-      body1: TextStyle(color:LightColor.titleTextColor)
+      bodyText2: TextStyle(color:LightColor.titleTextColor)
     )
   );
 

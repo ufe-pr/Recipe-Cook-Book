@@ -18,7 +18,7 @@ class StartupView extends StatelessWidget {
     return ViewModelBuilder.nonReactive(
       builder: (context, model, child) => Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: Container(),
         ),
       ),
       viewModelBuilder: () => StartupViewModel(),

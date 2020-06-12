@@ -3,8 +3,10 @@ import 'package:recipe_cook_book/constants/themes/light_color.dart';
 import 'bottom_curved_Painter.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  final Function(int) onIconPresedCallback;
-  CustomBottomNavigationBar({Key key, this.onIconPresedCallback})
+  final void Function(int) onIconPresedCallback;
+  final IconData icon1, icon2;
+  final selectedIndex;
+  CustomBottomNavigationBar({Key key, this.onIconPresedCallback, this.icon1, this.icon2, this.selectedIndex})
       : super(key: key);
 
   @override
@@ -14,12 +16,13 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
     with TickerProviderStateMixin {
-  int _selectedIndex = 0;
+  int _selectedIndex;
 
   AnimationController _xController;
   AnimationController _yController;
   @override
   void initState() {
+    _selectedIndex = widget.selectedIndex ?? 0;
     _xController = AnimationController(
         vsync: this, animationBehavior: AnimationBehavior.preserve);
     _yController = AnimationController(
@@ -162,10 +165,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                _icon(Icons.home, _selectedIndex == 0, 0),
-         //       _icon(Icons.search, _selectedIndex == 1, 1),
-        //     _icon(Icons.card_travel, _selectedIndex == 2, 2),
-                _icon(Icons.favorite_border, _selectedIndex == 1, 1),
+                _icon(this.widget.icon1, _selectedIndex == 0, 0),
+                _icon(this.widget.icon2, _selectedIndex == 1, 1),
               ],
             ),
           ),
