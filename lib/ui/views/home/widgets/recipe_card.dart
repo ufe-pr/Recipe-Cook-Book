@@ -46,9 +46,15 @@ class RecipeCard extends StatelessWidget {
             Expanded(
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: TitleText(
-                  text: recipe.recipeTitle,
-                  fontSize: 16,
+                child: Text(
+                  recipe.recipeTitle,
+                  style: AppTheme.h2Style.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  maxLines: 4,
                 ),
               ),
             ),

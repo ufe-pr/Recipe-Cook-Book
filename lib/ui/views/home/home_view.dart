@@ -31,8 +31,6 @@ class HomeView extends StatelessWidget {
                     color: ThemeColors.lightOrange1,
                     fontSize: 32,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: true,
                 ),
 
                 SizedBox(height: 10),

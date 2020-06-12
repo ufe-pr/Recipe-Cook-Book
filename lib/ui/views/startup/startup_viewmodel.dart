@@ -11,10 +11,9 @@ class StartupViewModel extends BaseViewModel {
   // TODO: loading,
 
   Future setup() async {
-    await Future.delayed(Duration(milliseconds: 100));
     await locator.allReady();
-    if (!locator<StorageUtil>().getBool('HAS_BEEN_INTRODUCED') ?? false)
-    await _navigationService.replaceWith(Routes.onboardingViewRoute);
-    else _navigationService.replaceWith(Routes.homeViewRoute);
+    if (!locator<StorageUtil>().getBool('HAS_BEEN_INTRODUCED'))
+      await _navigationService.replaceWith(Routes.onboardingViewRoute);
+    else _navigationService.clearStackAndShow(Routes.homeViewRoute);
   }
 }

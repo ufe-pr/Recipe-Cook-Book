@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_cook_book/app/locator.dart';
 import 'package:recipe_cook_book/app/router.dart';
-import 'package:recipe_cook_book/core/services/storage_util_service.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:recipe_cook_book/core/services/storage_util_service.dart';
 
 import '../../../constants/colors.dart';
 
@@ -74,25 +74,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       image: 'assets/images/onboarding1.png',
                       text1: 'Search for your\nfavorite Recipes',
                       text2:
-                          'With our app, you can find over 1000 \nrecipes to use to prepare your meal',
+                      'With our app, you can find over 1000 \nrecipes to use to prepare your meal',
                     ),
                     PageScreens(
                       image: 'assets/images/onboarding2.png',
                       text1: 'Use recipes to\nprepare meals',
                       text2:
-                          'Find over 1000 recipes to use to \nprepare your meal',
+                      'Find over 1000 recipes to use to \nprepare your meal',
                     ),
                     PageScreens(
                       image: 'assets/images/onboarding3.png',
                       text1: 'Save your favorite\nrecipes',
                       text2:
-                          'Saving your favorite recipe for another \ncook is just a click',
+                      'Saving your favorite recipe for another \ncook is just a click',
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: EdgeInsets.only(bottom: 48.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -100,78 +100,78 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               _currentPage != _numPages - 1
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    child: FlatButton(
+                      onPressed: () {
+                        _pageController.jumpToPage(_numPages);
+                      },
+                      child: Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Container(
-                          child: FlatButton(
-                            onPressed: () {
-                              _pageController.jumpToPage(_numPages);
-                            },
-                            child: Text(
-                              'Skip',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
+                        Text(
+                          'Next',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {
-                            _pageController.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                'Next',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                ),
-                              ),
-                              SizedBox(width: 5.0),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 24.0,
-                              ),
-                            ],
-                          ),
+                        SizedBox(width: 5.0),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                          size: 24.0,
                         ),
                       ],
-                    )
-                  : Text(''),
-            ],
-          ),
-        ),
-      ),
-      bottomSheet: _currentPage == _numPages - 1
-          ? GestureDetector(
-              onTap: () async {
-                await locator<StorageUtil>().putBool('HAS_BEEN_INTRODUCED', true);
-                return _navigationService.replaceWith(Routes.homeViewRoute);
-              },
-              child: Container(
-                height: 80,
-                color: Colors.white,
-                child: Center(
+                    ),
+                  ),
+                ],
+              )
+                  : Container(
+                height: 60,
+                child: RaisedButton(
+                  elevation: 4,
+                  onPressed: () async {
+                    await locator<StorageUtil>().getBool('HAS_BEEN_INTRODUCED');
+                    _navigationService
+                        .clearStackAndShow(Routes.homeViewRoute);
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                   child: Text(
                     'Get started',
                     style: TextStyle(
-                      color: Color(0xFFF57D37),
+                      color: ThemeColors.lightOrange4,
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  color: Colors.white,
                 ),
               ),
-            )
-          : Text(''),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -86,14 +86,12 @@ class _ProductDetailPageState extends State<RecipeDetailView>
   }
 
   List<Ingredient> getIngredients(Recipe recipe) {
-    List<Ingredient> ing = List<Ingredient>();
-    print(recipe.analyzedInstructions);
+    Set<Ingredient> ing = Set<Ingredient>();
     for (Step step in recipe.analyzedInstructions.first?.steps) {
       ing.addAll(step.ingredients);
-      print(step.ingredients);
     }
 
-    return ing.toSet().toList();
+    return ing.toList();
   }
 
   @override
@@ -116,7 +114,7 @@ class _ProductDetailPageState extends State<RecipeDetailView>
           icon: isLiked ? Icons.favorite : Icons.favorite_border,
           color: isLiked ? LightColor.red : LightColor.lightGrey,
           size: 15,
-          padding: 12,
+          padding: 7,
           isOutLine: false,
           onPressed: () async {
             if (isLiked)
@@ -211,6 +209,7 @@ class ImageBanner extends StatelessWidget {
         imageAssetPath,
         fit: BoxFit.cover,
       ),
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -303,15 +302,4 @@ class InstructionsSection extends StatelessWidget {
   }
 }
 
-// child: Stack(
-//             children: <Widget>[
-//               Column(
-//                 children: <Widget>[
-//                   _appBar(),
-//                   _productImage(),
-//                   _categoryWidget(),
-//                 ],
-//               ),
-//               _detailWidget()
-//             ],
-//           ),
+

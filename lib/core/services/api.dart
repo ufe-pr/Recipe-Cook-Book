@@ -76,7 +76,6 @@ class Api {
       // get start of sublist. return null if there's no result in that position
       int start = (page - 1) * numPerPage;
       if (start > items.length) {
-        print('Start is greater than items length\n\n\n\n\n');
         return null;
       }
 
@@ -119,7 +118,6 @@ class Api {
         response.response.where((element) {
           String title = element['title'].toLowerCase();
           bool match = title.contains(keyword.trim().toLowerCase());
-          print('$title returns $match');
           return match;
         }).toList();
     if (items != null) {

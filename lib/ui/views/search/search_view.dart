@@ -26,6 +26,7 @@ class SearchView extends StatelessWidget {
           middle: Text(model.title),
         ),
         child: Scaffold(
+          backgroundColor: Color(0xffeeeeee),
           body: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +46,7 @@ class SearchView extends StatelessWidget {
                             crossAxisCount: 2,
                             crossAxisSpacing: 20,
                             mainAxisSpacing: 30,
-                            childAspectRatio: 3 / 5,
+                            childAspectRatio: 1 / 1.9,
                           ),
                           itemBuilder: (BuildContext context, int index) {
                             return RecipeCard(

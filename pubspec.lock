@@ -141,13 +141,6 @@ packages:
       url: "https://pub.flutter-io.cn/"
     source: hosted
     version: "1.14.12"
-  color:
-    dependency: transitive
-    description:
-      name: color
-      url: "https://pub.flutter-io.cn/"
-    source: hosted
-    version: "2.1.1"
   convert:
     dependency: transitive
     description:
@@ -183,6 +176,13 @@ packages:
       url: "https://pub.flutter-io.cn/"
     source: hosted
     version: "1.3.6"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      url: "https://pub.flutter-io.cn/"
+    source: hosted
+    version: "1.2.0"
   fixnum:
     dependency: transitive
     description:
@@ -195,13 +195,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_native_splash:
-    dependency: "direct dev"
-    description:
-      name: flutter_native_splash
-      url: "https://pub.flutter-io.cn/"
-    source: hosted
-    version: "0.1.9"
   flutter_screenutil:
     dependency: "direct main"
     description:
